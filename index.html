@@ -49,10 +49,13 @@
 * { box-sizing: border-box; }
 html, body { background: var(--bg); }
 [hidden] { display: none !important; }
-button, input { touch-action: manipulation; }
-button { -webkit-user-select: none; user-select: none; }
+/* app feel: no text selection, no long-press menus, no rubber-band or double-tap zoom */
+html { overscroll-behavior: none; }
+* { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; touch-action: manipulation; }
+input { -webkit-user-select: text; user-select: text; }
+button:active:not(:disabled) { opacity: .65; }
 body {
-  margin: 0; overscroll-behavior-y: none;
+  margin: 0; overscroll-behavior: none;
   color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.45;
   -webkit-tap-highlight-color: transparent;
 }
@@ -431,6 +434,7 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
     </div>`;
   }
   function selectSet(i, j) {
+    if (!S.active || !S.active.start) return; // quick buttons only once the workout is running
     if (ui.sel && ui.sel.i === i && ui.sel.j === j && $('stepper')) return;
     ui.sel = { i, j };
     const old = $('stepper'); if (old) old.remove();
@@ -446,7 +450,7 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
     const locked = !S.active.start;
     const rows = e.sets.map((s, j) => {
       const p = prev[j];
-      const sel = ui.sel && ui.sel.i === i && ui.sel.j === j;
+      const sel = !locked && ui.sel && ui.sel.i === i && ui.sel.j === j;
       return `<div class="grid set${s.done ? ' done' : ''}${sel ? ' sel' : ''}" data-i="${i}" data-j="${j}">
         <span class="sn">${j + 1}</span>
         <button class="prev" data-act="useprev" data-i="${i}" data-j="${j}" ${p ? '' : 'disabled'} aria-label="이전 기록 적용">${p ? fmt(p.w) + '×' + p.r : '–'}</button>
@@ -755,9 +759,20 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
     const t = ev.target;
     if (!t.classList || !t.classList.contains('num')) return;
     if (t.dataset.f) selectSet(+t.dataset.i, +t.dataset.j);
-    setTimeout(() => { try { t.select(); } catch (e) {} }, 0);
+    // Empty the field instead of selecting its text (selecting pops up iOS's copy/paste menu).
+    // The old value stays visible as the placeholder and comes back if nothing is typed.
+    t.dataset.old = t.value;
+    if (t.value) { t.dataset.ph = t.placeholder; t.placeholder = t.value; t.value = ''; }
   });
-  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flush(); else { keepAwake(); tickTimer(); tickElapsed(); } });
+  document.addEventListener('focusout', (ev) => {
+    const t = ev.target;
+    if (!t.classList || !t.classList.contains('num') || t.dataset.old == null) return;
+    if (t.value === '' && t.dataset.old !== '') t.value = t.dataset.old;
+    if (t.dataset.ph != null) { t.placeholder = t.dataset.ph; delete t.dataset.ph; }
+    delete t.dataset.old;
+  });
+  document.addEventListener('contextmenu', (ev) => { if (ev.target.tagName !== 'INPUT') ev.preventDefault(); });
+  for (const g of ['gesturestart', 'gesturechange']) document.addEventListener(g, (ev) => ev.preventDefault());  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flush(); else { keepAwake(); tickTimer(); tickElapsed(); } });
 
   setInterval(() => { tickElapsed(); tickTimer(); }, 500);
 
