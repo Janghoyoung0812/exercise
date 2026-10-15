@@ -1,6 +1,6 @@
 // Offline support: app files are cached on install; fonts are cached the first time they load.
 // Bump VERSION whenever index.html changes so phones pick up the new version.
-const VERSION = 'setnote-v1';
+const VERSION = 'setnote-v2';
 const APP = ['./', 'index.html', 'manifest.webmanifest', 'icon-180.png', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', (e) => {

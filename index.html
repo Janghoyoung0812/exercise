@@ -30,7 +30,6 @@
   --done: #17804a;
   --done-bg: #e2f3e9;
   --warn: #c2362c;
-  --p25: #d23b2f; --p20: #2457c5; --p15: #e5b622; --p10: #2f9a55; --p5: #f2f2f2; --p2: #3a3f4a; --p1: #9aa3b2;
   --f-num: "Barlow Condensed", "IBM Plex Sans KR", system-ui, sans-serif;
   --f-body: "IBM Plex Sans KR", -apple-system, "Apple SD Gothic Neo", system-ui, sans-serif;
   --tabbar: 60px;
@@ -116,11 +115,9 @@ section[hidden] { display: none !important; }
 .ex { background: var(--surface); border-radius: 16px; padding: 14px 12px 12px; display: flex; flex-direction: column; gap: 8px; }
 .ex-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; padding-inline: 4px; }
 .ex-name { font-weight: 700; font-size: 17px; min-width: 0; overflow-wrap: anywhere; }
-.ex-plates { font-size: 12px; color: var(--muted); margin-top: 2px; }
-.ex-plates i { font-style: normal; display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 2px; vertical-align: 0; }
 .ex-del { font-size: 13px; color: var(--muted); padding: 6px 8px; border-radius: 8px; white-space: nowrap; }
 .ex-del.armed { background: var(--warn); color: #fff; }
-.grid { display: grid; grid-template-columns: 26px minmax(0,1fr) 68px 56px 44px 26px; gap: 6px; align-items: center; }
+.grid { display: grid; grid-template-columns: 26px minmax(0,1fr) 74px 60px 48px; gap: 6px; align-items: center; }
 .grid.headrow { font-size: 11px; color: var(--muted); letter-spacing: .05em; padding-inline: 4px; }
 .grid.headrow span:nth-child(n+3) { text-align: center; }
 .set { padding: 4px; border-radius: 10px; }
@@ -140,7 +137,6 @@ input.num.need { border-color: var(--warn); }
   height: 40px; border-radius: 8px; background: var(--sunk); color: var(--muted); font-size: 18px; font-weight: 700;
 }
 .chk[aria-pressed="true"] { background: var(--done); color: #fff; }
-.x { color: var(--muted); font-size: 18px; height: 40px; opacity: .7; }
 .ex-foot { display: flex; gap: 8px; }
 .ex-foot .btn { flex: 1; min-height: 40px; font-size: 14px; }
 
@@ -210,26 +206,45 @@ nav.tabs button[aria-selected="true"] { color: var(--accent); }
 h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weight: 500; margin: 10px 4px 0; }
 .empty { background: var(--surface); border-radius: 14px; padding: 22px 16px; color: var(--muted); text-align: center; }
 
-/* plates */
-.pl-form { background: var(--surface); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
-.pl-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.pl-big { width: 140px; height: 56px; font-size: 34px; }
-.seg { display: flex; background: var(--sunk); border-radius: 10px; padding: 3px; gap: 3px; }
-.seg button { padding: 8px 12px; border-radius: 8px; font-family: var(--f-num); font-size: 17px; color: var(--muted); }
-.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); }
-.steps { display: flex; gap: 6px; flex-wrap: wrap; }
-.steps .btn { min-height: 38px; padding: 0 12px; font-family: var(--f-num); font-size: 17px; }
-.barbell { background: var(--surface); border-radius: 16px; padding: 22px 12px; overflow-x: auto; }
-.bb { display: flex; align-items: center; justify-content: center; min-width: max-content; height: 150px; }
-.bb .shaft { height: 10px; width: 46px; background: var(--p1); }
-.bb .shaft.long { width: 70px; }
-.bb .collar { width: 10px; height: 30px; background: var(--p1); border-radius: 2px; }
-.bb .plate { width: 16px; border-radius: 4px; margin: 0 1px; border: 1px solid rgba(0,0,0,.25); }
-.bb .mid { padding: 0 10px; font-family: var(--f-num); font-size: 15px; color: var(--muted); }
-.pl-text { font-size: 15px; text-align: center; margin-top: 8px; }
-.pl-text b { font-family: var(--f-num); font-size: 22px; }
-.legend { display: flex; flex-wrap: wrap; gap: 10px 14px; justify-content: center; font-family: var(--f-num); font-size: 15px; color: var(--muted); }
-.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; border: 1px solid rgba(0,0,0,.2); }
+/* calendar */
+.cal { background: var(--surface); border-radius: 16px; padding: 14px 12px 12px; display: flex; flex-direction: column; gap: 10px; }
+.cal-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.cal-title { font-weight: 700; font-size: 18px; text-align: center; }
+.cal-title small { display: block; font-weight: 500; font-size: 12px; color: var(--muted); }
+.cal-nav { width: 44px; height: 44px; border-radius: 10px; background: var(--sunk); font-size: 20px; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.dow { font-size: 12px; color: var(--muted); text-align: center; padding-bottom: 2px; }
+.dow.sun { color: var(--warn); }
+.day {
+  aspect-ratio: 1; max-width: 100%; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-family: var(--f-num); font-size: 18px; font-variant-numeric: tabular-nums; position: relative;
+}
+.day.has { background: var(--accent); color: var(--accent-ink); }
+.day.has small { font-size: 11px; line-height: 1; opacity: .85; }
+.day.today:not(.has) { box-shadow: inset 0 0 0 2px var(--line); }
+.day.sel { box-shadow: 0 0 0 2px var(--ink); }
+.day.future { color: var(--muted); opacity: .5; }
+
+/* quick weight / rep buttons under the selected set */
+.stepper { display: flex; flex-wrap: wrap; gap: 6px 10px; padding: 2px 4px 6px; }
+.stepper .grp { display: flex; gap: 4px; align-items: center; }
+.stepper .lab { font-size: 12px; color: var(--muted); width: 18px; }
+.stepper button {
+  min-width: 46px; height: 38px; border-radius: 8px; background: var(--sunk); border: 1px solid var(--line);
+  font-family: var(--f-num); font-size: 17px; font-variant-numeric: tabular-nums;
+}
+.set.sel { box-shadow: inset 0 0 0 1px var(--accent); }
+
+/* one control for adding and removing sets */
+.setctl { flex: 1; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; background: var(--sunk); border-radius: 10px; }
+.setctl button { height: 42px; font-weight: 700; font-size: 14px; }
+.setctl button:disabled { opacity: .35; cursor: default; }
+.setctl span { font-family: var(--f-num); font-size: 18px; color: var(--muted); padding-inline: 8px; border-inline: 1px solid var(--line); line-height: 26px; }
+
+/* setup (before start) */
+.live.setup .stat b { color: var(--muted); }
+.setup-note { grid-column: 1 / -1; font-size: 13px; color: var(--muted); margin: 6px 0 0; }
+.chk.locked { opacity: .45; }
 
 .toast {
   position: fixed; left: 50%; top: calc(env(safe-area-inset-top, 0px) + 12px); transform: translateX(-50%); z-index: 30;
@@ -253,7 +268,7 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
 
   <section id="tab-workout" class="stack"></section>
   <section id="tab-history" class="stack" hidden></section>
-  <section id="tab-plates" class="stack" hidden></section>
+  <section id="tab-cal" class="stack" hidden></section>
 </div>
 
 <div class="timer" id="timer" hidden>
@@ -271,7 +286,7 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
   <div class="in">
     <button role="tab" data-tab="workout" aria-selected="true"><b>LIFT</b>운동</button>
     <button role="tab" data-tab="history" aria-selected="false"><b>LOG</b>기록</button>
-    <button role="tab" data-tab="plates" aria-selected="false"><b>PLATE</b>원판</button>
+    <button role="tab" data-tab="cal" aria-selected="false"><b>CAL</b>달력</button>
   </div>
 </nav>
 
@@ -289,15 +304,16 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
     '팔': ['바벨 컬', '덤벨 컬', '해머 컬', '트라이셉 푸시다운', '오버헤드 익스텐션'],
     '코어': ['행잉 레그 레이즈', '크런치', '케이블 크런치', '앱 롤아웃', '플랭크']
   };
-  const BARBELL = new Set(['벤치프레스', '인클라인 벤치프레스', '데드리프트', '바벨 로우', '스쿼트', '루마니안 데드리프트', '오버헤드 프레스', '바벨 컬', '힙 쓰러스트']);
-  const PLATES = [[25, 'var(--p25)', 130], [20, 'var(--p20)', 122], [15, 'var(--p15)', 110], [10, 'var(--p10)', 96], [5, 'var(--p5)', 70], [2.5, 'var(--p2)', 56], [1.25, 'var(--p1)', 46]];
   const RESTS = [60, 90, 120, 150, 180, 240];
   const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
   const LS = 'setnote.v1';
 
   let S = { active: null, history: [], rest: 90, custom: [] };
   let tab = 'workout';
-  let ui = { open: null, plateKg: 60, bar: 20, group: '전체', q: '' };
+  const today0 = new Date();
+  let ui = { open: null, group: '전체', q: '', sel: null, calY: today0.getFullYear(), calM: today0.getMonth(), calDay: null };
+  const dayKey = (t) => { const d = new Date(t); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
+  ui.calDay = dayKey(today0);
 
   const $ = (id) => document.getElementById(id);
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -356,11 +372,6 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
     for (const w of S.history) { const e = w.exercises.find((x) => x.name === name); if (e) return e.sets; }
     return null;
   }
-  function splitPlates(total, bar) {
-    let side = (total - bar) / 2; if (side < 0) return null;
-    const out = []; for (const [p] of PLATES) { while (side >= p - 1e-9) { out.push(p); side -= p; } }
-    return { out, rem: Math.round(side * 2 * 100) / 100 };
-  }
   let toastT = null;
   function toast(msg) { const t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => (t.hidden = true), 2200); }
   const armed = {};
@@ -380,10 +391,10 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
       el.innerHTML = `
         <div class="hero">
           <h1>오늘 운동을 시작할까요?</h1>
-          <p>세트를 체크하면 휴식 타이머가 자동으로 돌아갑니다. 지난 기록은 각 세트 옆에 보여요.</p>
-          <button class="btn primary block" data-act="start">빈 운동 시작</button>
+          <p>운동과 세트, 무게를 먼저 정해 두고 시작 버튼을 누르면 그때부터 시간이 흘러요.</p>
+          <button class="btn primary block" data-act="start">새 운동 구성하기</button>
         </div>
-        ${reps.length ? `<h2 class="sec">지난 운동 그대로 하기</h2><div class="repeat-list">${reps.map((w) => `
+        ${reps.length ? `<h2 class="sec">지난 운동 불러와서 구성하기</h2><div class="repeat-list">${reps.map((w) => `
           <button class="repeat" data-act="repeat" data-id="${esc(w.id)}">
             <b>${dateStr(w.start)}</b>
             <span>${esc(w.exercises.map((e) => e.name).join(' · '))}</span>
@@ -391,15 +402,20 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
       return;
     }
     const a = S.active;
+    const setup = !a.start;
+    const total = a.exercises.reduce((n, e) => n + e.sets.length, 0);
     el.innerHTML = `
-      <div class="live">
-        <div class="stat"><b id="elapsed">0:00</b><small>운동 시간</small></div>
-        <div class="stat"><b id="vol">0</b><small>볼륨 kg</small></div>
-        <div class="stat"><b id="setcount">0</b><small>완료 세트</small></div>
+      <div class="live${setup ? ' setup' : ''}">
+        <div class="stat"><b id="elapsed">${setup ? '대기' : '0:00'}</b><small>운동 시간</small></div>
+        <div class="stat"><b id="vol">0</b><small>${setup ? '예정 볼륨 kg' : '볼륨 kg'}</small></div>
+        <div class="stat"><b id="setcount">0</b><small>${setup ? '예정 세트' : '완료 세트'}</small></div>
+        ${setup ? `<p class="setup-note">${a.exercises.length ? `운동 ${a.exercises.length}개 · ${total}세트 준비됨. 다 정했으면 시작을 누르세요.` : '아래 + 운동 추가로 오늘 할 운동을 골라 주세요.'}</p>` : ''}
         <div class="actions">
           <button class="btn ghost" data-act="rest" id="restbtn">휴식 ${S.rest}초</button>
           <button class="btn danger ghost" data-act="cancel">취소</button>
-          <button class="btn primary" data-act="finish">운동 완료</button>
+          ${setup
+            ? `<button class="btn primary" data-act="go"${a.exercises.length ? '' : ' disabled'}>▶ 운동 시작</button>`
+            : `<button class="btn primary" data-act="finish">운동 완료</button>`}
         </div>
       </div>
       ${a.exercises.map(exCard).join('')}
@@ -407,46 +423,62 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
     updateStats();
   }
 
-  function plateHint(e) {
-    if (!BARBELL.has(e.name)) return '';
-    const last = [...e.sets].reverse().find((s) => s.w);
-    if (!last || last.w <= 20) return '';
-    const r = splitPlates(last.w, 20); if (!r || !r.out.length) return '';
-    return `<div class="ex-plates">${fmt(last.w)}kg 한쪽 원판: ${r.out.map((p) => `<i style="background:${PLATES.find((x) => x[0] === p)[1]}"></i>${p}`).join(' ')}</div>`;
+  function stepperHtml(i, j) {
+    const b = (f, d, t) => `<button data-act="step" data-f="${f}" data-d="${d}" data-i="${i}" data-j="${j}">${t}</button>`;
+    return `<div class="stepper" id="stepper">
+      <div class="grp"><span class="lab">kg</span>${b('w', -10, '−10')}${b('w', -5, '−5')}${b('w', 5, '+5')}${b('w', 10, '+10')}</div>
+      <div class="grp"><span class="lab">회</span>${b('r', -1, '−1')}${b('r', 1, '+1')}</div>
+    </div>`;
+  }
+  function selectSet(i, j) {
+    if (ui.sel && ui.sel.i === i && ui.sel.j === j && $('stepper')) return;
+    ui.sel = { i, j };
+    const old = $('stepper'); if (old) old.remove();
+    document.querySelectorAll('.set.sel').forEach((r) => r.classList.remove('sel'));
+    const row = document.querySelector(`.set[data-i="${i}"][data-j="${j}"]`);
+    if (!row) return;
+    row.classList.add('sel');
+    row.insertAdjacentHTML('afterend', stepperHtml(i, j));
   }
 
   function exCard(e, i) {
     const prev = prevFor(e.name) || [];
+    const locked = !S.active.start;
     const rows = e.sets.map((s, j) => {
       const p = prev[j];
-      return `<div class="grid set${s.done ? ' done' : ''}">
+      const sel = ui.sel && ui.sel.i === i && ui.sel.j === j;
+      return `<div class="grid set${s.done ? ' done' : ''}${sel ? ' sel' : ''}" data-i="${i}" data-j="${j}">
         <span class="sn">${j + 1}</span>
         <button class="prev" data-act="useprev" data-i="${i}" data-j="${j}" ${p ? '' : 'disabled'} aria-label="이전 기록 적용">${p ? fmt(p.w) + '×' + p.r : '–'}</button>
         <input id="w-${i}-${j}" class="num" inputmode="decimal" autocomplete="off" data-f="w" data-i="${i}" data-j="${j}" value="${fmt(s.w)}" placeholder="${p ? fmt(p.w) : 'kg'}" aria-label="${j + 1}세트 무게">
         <input id="r-${i}-${j}" class="num" inputmode="numeric" autocomplete="off" data-f="r" data-i="${i}" data-j="${j}" value="${s.r ?? ''}" placeholder="${p ? p.r : '회'}" aria-label="${j + 1}세트 횟수">
-        <button class="chk" data-act="done" data-i="${i}" data-j="${j}" aria-pressed="${!!s.done}" aria-label="${j + 1}세트 완료">✓</button>
-        <button class="x" data-act="delset" data-i="${i}" data-j="${j}" aria-label="${j + 1}세트 삭제">×</button>
-      </div>`;
+        <button class="chk${locked ? ' locked' : ''}" data-act="done" data-i="${i}" data-j="${j}" aria-pressed="${!!s.done}" aria-label="${j + 1}세트 완료">✓</button>
+      </div>${sel ? stepperHtml(i, j) : ''}`;
     }).join('');
     return `<div class="ex">
       <div class="ex-head">
-        <div><div class="ex-name">${esc(e.name)}</div>${plateHint(e)}</div>
+        <div class="ex-name">${esc(e.name)}</div>
         <button class="ex-del" data-act="delex" data-i="${i}">운동 삭제</button>
       </div>
-      <div class="grid headrow"><span>세트</span><span>이전</span><span>kg</span><span>회</span><span></span><span></span></div>
+      <div class="grid headrow"><span>세트</span><span>이전</span><span>kg</span><span>회</span><span></span></div>
       ${rows}
-      <div class="ex-foot"><button class="btn" data-act="addset" data-i="${i}">+ 세트 추가</button></div>
+      <div class="ex-foot"><div class="setctl">
+        <button data-act="delset" data-i="${i}"${e.sets.length > 1 ? '' : ' disabled'}>− 세트 삭제</button>
+        <span>${e.sets.length}세트</span>
+        <button data-act="addset" data-i="${i}">+ 세트 추가</button>
+      </div></div>
     </div>`;
   }
 
   function updateStats() {
     if (!S.active) return;
     const v = $('vol'), c = $('setcount');
-    if (v) v.textContent = kg(volOf(S.active.exercises, true));
-    if (c) c.textContent = S.active.exercises.reduce((a, e) => a + e.sets.filter((s) => s.done).length, 0);
+    const setup = !S.active.start;
+    if (v) v.textContent = kg(volOf(S.active.exercises, !setup));
+    if (c) c.textContent = S.active.exercises.reduce((a, e) => a + (setup ? e.sets.length : e.sets.filter((s) => s.done).length), 0);
     tickElapsed();
   }
-  function tickElapsed() { const el = $('elapsed'); if (el && S.active) el.textContent = clock((Date.now() - S.active.start) / 1000); }
+  function tickElapsed() { const el = $('elapsed'); if (el && S.active && S.active.start) el.textContent = clock((Date.now() - S.active.start) / 1000); }
 
   // ---------- picker ----------
   function openPicker() { ui.q = ''; ui.group = '전체'; renderPicker(); setTimeout(() => { const s = $('pick-q'); if (s && window.innerWidth > 700) s.focus(); }, 50); }
@@ -559,68 +591,69 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
       ${prs.length ? `<h2 class="sec">최고 기록 · 추정 1RM</h2><div class="pr">${prs.map(([n, b]) => `
         <div class="row"><div>${esc(n)}<small>${fmt(b.s.w)}kg × ${b.s.r}회 · ${dateStr(b.t)}</small></div><b>${fmt(Math.round(b.v * 2) / 2)}kg</b></div>`).join('')}</div>` : ''}
       <h2 class="sec">지난 운동</h2>
-      ${S.history.map((w) => {
-        const open = ui.open === w.id;
-        const min = Math.max(1, Math.round((w.end - w.start) / 60000));
-        return `<div class="card">
-          <button class="card-top" data-act="toggle" data-id="${esc(w.id)}" aria-expanded="${open}"><b>${dateStr(w.start)}</b><span>${min}분 · ${kg(w.volume || 0)}kg</span></button>
-          <div class="names">${esc(w.exercises.map((e) => `${e.name} ${e.sets.length}세트`).join(' · '))}</div>
-          ${open ? `<div class="detail">
-            ${w.exercises.map((e) => `<div class="row"><span>${esc(e.name)}</span><span>${e.sets.map((s) => `${fmt(s.w)}×${s.r}`).join('  ')}</span></div>`).join('')}
-            <div class="acts"><button class="btn" data-act="repeat" data-id="${esc(w.id)}">이 운동 다시 하기</button><button class="btn danger ghost" data-act="delw" data-id="${esc(w.id)}">삭제</button></div>
-          </div>` : ''}
-        </div>`;
-      }).join('')}
+      ${S.history.map((w) => workoutCard(w, false)).join('')}
       ${backup}`;
   }
 
-  // ---------- render: plates ----------
-  function renderPlates() {
-    const el = $('tab-plates');
-    const r = splitPlates(ui.plateKg || 0, ui.bar);
-    let viz = '', text = '';
-    if (!r) { text = `봉 무게(${ui.bar}kg)보다 가벼워요`; }
-    else {
-      const side = (dir) => (dir ? r.out : [...r.out].reverse()).map((p) => { const d = PLATES.find((x) => x[0] === p); return `<div class="plate" style="height:${d[2]}px;background:${d[1]}"></div>`; }).join('');
-      viz = `<div class="bb"><div class="shaft"></div>${side(false)}<div class="collar"></div><div class="shaft long"></div><div class="mid">${ui.bar}kg</div><div class="shaft long"></div><div class="collar"></div>${side(true)}<div class="shaft"></div></div>`;
-      text = r.out.length ? `한쪽에 <b>${r.out.join(' + ')}</b> kg` : '원판 없이 봉만';
-      if (r.rem) text += `<br><span style="color:var(--warn)">${fmt(r.rem)}kg는 원판으로 맞출 수 없어요 (${fmt(ui.plateKg - r.rem)}kg로 세팅됨)</span>`;
-    }
-    el.innerHTML = `
-      <div class="pl-form">
-        <div class="label">목표 무게 (kg)</div>
-        <div class="pl-row">
-          <input id="pl-kg" class="num pl-big" inputmode="decimal" autocomplete="off" value="${fmt(ui.plateKg)}" aria-label="목표 무게">
-          <div class="steps">
-            <button class="btn" data-act="pl-step" data-d="-5">−5</button><button class="btn" data-act="pl-step" data-d="-2.5">−2.5</button>
-            <button class="btn" data-act="pl-step" data-d="2.5">+2.5</button><button class="btn" data-act="pl-step" data-d="5">+5</button>
-          </div>
-        </div>
-        <div class="label">봉 무게</div>
-        <div class="seg">${[20, 15, 10].map((b) => `<button data-act="pl-bar" data-b="${b}" aria-pressed="${ui.bar === b}">${b}kg</button>`).join('')}</div>
-      </div>
-      <div class="barbell">${viz}<div class="pl-text">${text}</div></div>
-      <div class="legend">${PLATES.map(([p, c]) => `<span><i style="background:${c}"></i>${p}</span>`).join('')}</div>`;
+  function workoutCard(w, alwaysOpen) {
+    const open = alwaysOpen || ui.open === w.id;
+    const min = Math.max(1, Math.round((w.end - w.start) / 60000));
+    const t = new Date(w.start);
+    const head = alwaysOpen ? `${t.getHours()}:${String(t.getMinutes()).padStart(2, '0')} 시작` : dateStr(w.start);
+    return `<div class="card">
+      <button class="card-top" data-act="toggle" data-id="${esc(w.id)}" aria-expanded="${open}"${alwaysOpen ? ' disabled' : ''}><b>${head}</b><span>${min}분 · ${kg(w.volume || 0)}kg</span></button>
+      <div class="names">${esc(w.exercises.map((e) => `${e.name} ${e.sets.length}세트`).join(' · '))}</div>
+      ${open ? `<div class="detail">
+        ${w.exercises.map((e) => `<div class="row"><span>${esc(e.name)}</span><span>${e.sets.map((s) => `${fmt(s.w)}×${s.r}`).join('  ')}</span></div>`).join('')}
+        <div class="acts"><button class="btn" data-act="repeat" data-id="${esc(w.id)}">이 운동 다시 하기</button><button class="btn danger ghost" data-act="delw" data-id="${esc(w.id)}">삭제</button></div>
+      </div>` : ''}
+    </div>`;
   }
-  function refreshPlatesView() {
-    // re-render everything except the input so typing keeps focus
-    const inp = $('pl-kg'); const focused = document.activeElement === inp; const pos = inp ? inp.selectionStart : 0; const val = inp ? inp.value : '';
-    renderPlates();
-    if (focused) { const n = $('pl-kg'); n.value = val; n.focus(); try { n.setSelectionRange(pos, pos); } catch (e) {} }
+
+  // ---------- render: calendar ----------
+  function renderCal() {
+    const el = $('tab-cal');
+    const y = ui.calY, m = ui.calM;
+    const byDay = {};
+    for (const w of S.history) { const k = dayKey(w.start); (byDay[k] = byDay[k] || []).push(w); }
+    const first = new Date(y, m, 1).getDay(), days = new Date(y, m + 1, 0).getDate();
+    const now = new Date(), tk = dayKey(now);
+    let cnt = 0, cells = '';
+    for (let k = 0; k < first; k++) cells += '<span></span>';
+    for (let d = 1; d <= days; d++) {
+      const key = `${y}-${m + 1}-${d}`, ws = byDay[key] || [];
+      if (ws.length) cnt++;
+      const cls = ['day', ws.length && 'has', key === tk && 'today', key === ui.calDay && 'sel', new Date(y, m, d) > now && 'future'].filter(Boolean).join(' ');
+      cells += `<button class="${cls}" data-act="calday" data-k="${key}" aria-label="${m + 1}월 ${d}일${ws.length ? ', 운동함' : ''}">${d}${ws.length > 1 ? `<small>×${ws.length}</small>` : ''}</button>`;
+    }
+    const [sy, sm, sd] = ui.calDay.split('-').map(Number);
+    const selWs = (byDay[ui.calDay] || []).slice().sort((a, b) => a.start - b.start);
+    el.innerHTML = `
+      <div class="cal">
+        <div class="cal-head">
+          <button class="cal-nav" data-act="calmove" data-d="-1" aria-label="이전 달">‹</button>
+          <div class="cal-title">${y}년 ${m + 1}월<small>운동한 날 ${cnt}일</small></div>
+          <button class="cal-nav" data-act="calmove" data-d="1" aria-label="다음 달">›</button>
+        </div>
+        <div class="cal-grid">${DAYS.map((d, k) => `<span class="dow${k === 0 ? ' sun' : ''}">${d}</span>`).join('')}${cells}</div>
+      </div>
+      <h2 class="sec">${dateStr(new Date(sy, sm - 1, sd))}</h2>
+      ${selWs.length ? selWs.map((w) => workoutCard(w, true)).join('') : '<div class="empty">이날은 운동 기록이 없어요</div>'}`;
   }
 
   function render() {
-    for (const t of ['workout', 'history', 'plates']) $('tab-' + t).hidden = tab !== t;
+    for (const t of ['workout', 'history', 'cal']) $('tab-' + t).hidden = tab !== t;
     document.querySelectorAll('nav.tabs button').forEach((b) => b.setAttribute('aria-selected', b.dataset.tab === tab));
     if (tab === 'workout') renderWorkout();
     if (tab === 'history') renderHistory();
-    if (tab === 'plates') renderPlates();
+    if (tab === 'cal') renderCal();
   }
 
   // ---------- actions ----------
+  // A new workout starts in setup: the clock only runs after "운동 시작".
   function startWorkout(from) {
-    S.active = { id: 'w' + Date.now(), start: Date.now(), exercises: from ? from.exercises.map((e) => ({ name: e.name, sets: e.sets.map((s) => ({ w: s.w, r: s.r, done: false })) })) : [] };
-    tab = 'workout'; persist(); render(); keepAwake();
+    S.active = { id: 'w' + Date.now(), start: null, exercises: from ? from.exercises.map((e) => ({ name: e.name, sets: e.sets.map((s) => ({ w: s.w, r: s.r, done: false })) })) : [] };
+    ui.sel = null; tab = 'workout'; persist(); render(); window.scrollTo(0, 0);
     if (!from) openPicker();
   }
 
@@ -630,7 +663,7 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
     const tb = ev.target.closest('nav.tabs button');
     if (tb) { tab = tb.dataset.tab; render(); window.scrollTo(0, 0); return; }
     const b = ev.target.closest('[data-act]');
-    if (!b) return;
+    if (!b) { const row = ev.target.closest('.set'); if (row) selectSet(+row.dataset.i, +row.dataset.j); return; }
     const act = b.dataset.act, i = +b.dataset.i, j = +b.dataset.j;
     if (act === 'closepick' && ev.target !== b && b.classList.contains('sheet-bg')) return; // tap inside sheet
     const a = S.active;
@@ -642,17 +675,41 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
       case 'group': ui.group = b.dataset.g; renderPicker(); break;
       case 'addex': addExercise(b.dataset.n); break;
       case 'addset': { const sets = a.exercises[i].sets; const l = sets[sets.length - 1]; sets.push({ w: l ? l.w : null, r: l ? l.r : null, done: false }); persist(); render(); break; }
-      case 'delset': a.exercises[i].sets.splice(j, 1); persist(); render(); break;
-      case 'delex': if (arm('ex' + i, b, '한 번 더 누르면 삭제')) { a.exercises.splice(i, 1); persist(); render(); } break;
+      case 'delset': {
+        const sets = a.exercises[i].sets; if (sets.length <= 1) break;
+        sets.pop();
+        if (ui.sel && ui.sel.i === i && ui.sel.j >= sets.length) ui.sel = null;
+        persist(); render(); break;
+      }
+      case 'delex': if (arm('ex' + i, b, '한 번 더 누르면 삭제')) { a.exercises.splice(i, 1); ui.sel = null; persist(); render(); } break;
+      case 'step': {
+        const s = a.exercises[i].sets[j], f = b.dataset.f, d = +b.dataset.d;
+        const p = (prevFor(a.exercises[i].name) || [])[j];
+        let cur = s[f] != null ? s[f] : (p ? p[f] : 0);
+        let v = Math.max(0, Math.round((cur + d) * 100) / 100);
+        if (f === 'r') v = Math.round(v);
+        s[f] = v;
+        const inp = $(`${f}-${i}-${j}`); if (inp) { inp.value = f === 'w' ? fmt(v) : v; inp.classList.remove('need'); }
+        updateStats(); persist(); break;
+      }
+      case 'go':
+        if (!a.exercises.length) break;
+        a.start = Date.now(); persist(); render(); keepAwake(); toast('운동 시작! 화이팅'); break;
+      case 'calmove': { const d = new Date(ui.calY, ui.calM + +b.dataset.d, 1); ui.calY = d.getFullYear(); ui.calM = d.getMonth(); renderCal(); break; }
+      case 'calday': ui.calDay = b.dataset.k; renderCal(); break;
       case 'useprev': { const p = (prevFor(a.exercises[i].name) || [])[j]; if (p) { a.exercises[i].sets[j].w = p.w; a.exercises[i].sets[j].r = p.r; persist(); render(); } break; }
       case 'done': {
         const s = a.exercises[i].sets[j];
+        if (!a.start) { toast('먼저 ▶ 운동 시작을 눌러 주세요'); break; }
         if (!s.done) {
           const p = (prevFor(a.exercises[i].name) || [])[j];
           if (s.w == null && p) s.w = p.w;
           if (s.r == null && p) s.r = p.r;
           if (!s.r) { const r = $(`r-${i}-${j}`); r.classList.add('need', 'shake'); r.focus(); setTimeout(() => r.classList.remove('shake'), 600); break; }
           s.done = true; startRest(S.rest);
+          // move the quick buttons to the next set
+          if (j + 1 < a.exercises[i].sets.length) ui.sel = { i, j: j + 1 };
+          else if (ui.sel && ui.sel.i === i) ui.sel = null;
         } else s.done = false;
         persist(); render(); break;
       }
@@ -674,8 +731,6 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
       case 't-minus': if (tEnd) { tEnd -= 15000; tTotal = Math.max(1, tTotal - 15); tickTimer(); } break;
       case 't-plus': if (tEnd) { if (tEnd < Date.now()) { tEnd = Date.now(); beeped = false; $('timer-in').classList.remove('over'); clearTimeout(overT); } tEnd += 15000; tTotal += 15; tickTimer(); } break;
       case 't-skip': stopRest(); break;
-      case 'pl-step': ui.plateKg = Math.max(0, (ui.plateKg || 0) + parseFloat(b.dataset.d)); renderPlates(); break;
-      case 'pl-bar': ui.bar = +b.dataset.b; renderPlates(); break;
       case 'export': exportBackup(); break;
       case 'import': $('import-file').value = ''; $('import-file').click(); break;
     }
@@ -684,7 +739,6 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
   document.addEventListener('input', (ev) => {
     const t = ev.target;
     if (t.id === 'pick-q') { ui.q = t.value; renderPickList(); return; }
-    if (t.id === 'pl-kg') { ui.plateKg = num(t.value) || 0; refreshPlatesView(); return; }
     if (t.classList.contains('num') && t.dataset.f && S.active) {
       const s = S.active.exercises[+t.dataset.i].sets[+t.dataset.j];
       const v = num(t.value);
@@ -697,7 +751,12 @@ h2.sec { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-weigh
     if (ev.key === 'Enter' && ev.target.id === 'pick-q' && ev.target.value.trim()) addExercise(ev.target.value);
     if (ev.key === 'Escape' && $('sheet-root').innerHTML) closePicker();
   });
-  document.addEventListener('focusin', (ev) => { if (ev.target.classList && ev.target.classList.contains('num')) setTimeout(() => { try { ev.target.select(); } catch (e) {} }, 0); });
+  document.addEventListener('focusin', (ev) => {
+    const t = ev.target;
+    if (!t.classList || !t.classList.contains('num')) return;
+    if (t.dataset.f) selectSet(+t.dataset.i, +t.dataset.j);
+    setTimeout(() => { try { t.select(); } catch (e) {} }, 0);
+  });
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flush(); else { keepAwake(); tickTimer(); tickElapsed(); } });
 
   setInterval(() => { tickElapsed(); tickTimer(); }, 500);
